@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Muqattaʿat Explorer</h2>
+
+<p>
+Explore the letter counts of the Muqattaʿat opening letters across the Qur'an.
+</p>
+
+<div class="section">
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Surah</th>
+<th>Letters</th>
+<th>Counts</th>
+</tr>
+
+{% for r in results %}
+
+<tr>
+
+<td>{{ r.surah }}</td>
+
+<td style="font-size:20px;direction:rtl">{{ r.letters }}</td>
+
+<td>
+
+{% for name,data in r.counts.items() %}
+
+<b>{{ name }}</b> :
+{{ data.plain }}
+
+{% if data.plain_19 %}
+✓
+{% endif %}
+
+<br>
+
+{% endfor %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

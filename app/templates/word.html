@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Word Search</h2>
+
+<form method="post">
+
+Arabic Word
+<input name="word">
+
+<button type="submit">Search</button>
+
+</form>
+
+{% if results %}
+
+<div class="result">
+
+<p>Total occurrences: {{ total }}</p>
+
+<ul>
+
+{% for r in results %}
+
+<li>{{ r }}</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
