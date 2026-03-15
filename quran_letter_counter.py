@@ -58,19 +58,26 @@ def _count_letters(file,surah,letter):
     return count
 
 
-def count_letter_in_surah(surah,letter_name):
+def count_letter_in_surah(surah, letter_name):
 
-    letter_name=letter_name.lower()
+    letter_name = letter_name.lower()
 
     if letter_name not in letter_map:
         raise ValueError("Unknown letter")
 
-    letter=letter_map[letter_name]
+    letter = letter_map[letter_name]
 
-    plain=_count_letters("quran-simple-plain.txt",surah,letter)
-    uthmani=_count_letters("quran-uthmani.txt",surah,letter)
+    plain = _count_letters("quran-simple-plain.txt", surah, letter)
+    uthmani = _count_letters("quran-uthmani.txt", surah, letter)
 
-    return plain,uthmani
+    # Exclude Muqattaʿat opening letter
+    if surah in muqattaat:
+        opening = muqattaat[surah]
+        if letter in opening:
+            plain -= opening.count(letter)
+            uthmani -= opening.count(letter)
+
+    return plain, uthmani
 
 
 def count_all_letters_in_verses(surah, verses):
