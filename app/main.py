@@ -7,7 +7,7 @@ from app.analysis import muqattaat_analysis
 
 app = FastAPI()
 
-templates = Jinja2Templates(directory="app/templates")
+templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/", response_class=HTMLResponse)

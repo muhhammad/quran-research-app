@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Qur'an Research Lab</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        nav {
+            padding: 10px;
+            background: #f5f5f5;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .arabic {
+            font-size: 22px;
+            direction: rtl;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ✅ NAVBAR (ADD HERE) -->
+<nav>
+    <a href="/">Home</a>
+    <a href="/verse">Verse</a>
+    <a href="/letter">Letter</a>
+    <a href="/word">Word</a>
+    <a href="/muqattaat">Muqattaʿat</a>
+</nav>
+
+<!-- ✅ CONTENT WRAPPER -->
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

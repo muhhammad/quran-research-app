@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Letter Analysis</h2>
+
+<form method="post">
+
+<label>Letter:</label>
+<select name="letter">
+<option value="qaf">ق</option>
+<option value="nun">ن</option>
+<option value="alif">ا</option>
+<option value="lam">ل</option>
+<option value="mim">م</option>
+</select>
+
+<label>Surah:</label>
+<input type="number" name="surah" min="1" max="114" required>
+
+<button type="submit">Analyze</button>
+
+</form>
+
+{% if result %}
+<hr>
+
+<h3>Result</h3>
+
+<p>Plain: {{ result.plain }}</p>
+<p>Uthmani: {{ result.uthmani }}</p>
+
+<p>Divisible by 19:</p>
+<ul>
+<li>Plain: {{ result.plain_19 }}</li>
+<li>Uthmani: {{ result.uthmani_19 }}</li>
+</ul>
+
+{% endif %}
+
+{% endblock %}

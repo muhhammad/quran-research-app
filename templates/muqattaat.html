@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Muqattaʿat Analysis</h2>
+
+{% for item in results %}
+<hr>
+
+<h3>Surah {{ item.surah }} ({{ item.letters }})</h3>
+
+<ul>
+{% for name, data in item.counts.items() %}
+<li>
+{{ name }} → {{ data.plain }} (19: {{ data.plain_19 }})
+</li>
+{% endfor %}
+</ul>
+
+{% endfor %}
+
+{% endblock %}
