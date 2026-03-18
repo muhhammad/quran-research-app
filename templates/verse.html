@@ -7,10 +7,16 @@
 <form method="post">
 
 <label>Surah:</label>
-<input type="number" name="surah" min="1" max="114" required>
+<select name="surah">
+{% for num, name in surahs.items() %}
+<option value="{{ num }}">
+    {{ num }} - {{ name }}
+</option>
+{% endfor %}
+</select>
 
 <label>Ayah:</label>
-<input type="number" name="ayah" required>
+<select name="ayah" id="ayah-select"></select>
 
 <button type="submit">Analyze</button>
 
@@ -27,5 +33,32 @@
 <p><strong>Letters:</strong> {{ result.letters }}</p>
 
 {% endif %}
+
+<!-- ✅ MOVE SCRIPT HERE -->
+<script>
+const ayahCounts = {{ ayah_counts | tojson }};
+const surahSelect = document.querySelector("select[name='surah']");
+const ayahSelect = document.getElementById("ayah-select");
+
+function updateAyahOptions() {
+    const surah = surahSelect.value;
+    const maxAyah = ayahCounts[surah];
+
+    ayahSelect.innerHTML = "";
+
+    for (let i = 1; i <= maxAyah; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        ayahSelect.appendChild(option);
+    }
+}
+
+// Run on load
+updateAyahOptions();
+
+// Run when surah changes
+surahSelect.addEventListener("change", updateAyahOptions);
+</script>
 
 {% endblock %}

@@ -8,15 +8,19 @@
 
 <label>Letter:</label>
 <select name="letter">
-<option value="qaf">ق</option>
-<option value="nun">ن</option>
-<option value="alif">ا</option>
-<option value="lam">ل</option>
-<option value="mim">م</option>
+{% for name, arabic in letters.items() %}
+<option value="{{ name }}">{{ arabic }} ({{ name }})</option>
+{% endfor %}
 </select>
 
 <label>Surah:</label>
-<input type="number" name="surah" min="1" max="114" required>
+<select name="surah">
+{% for num, name in surahs.items() %}
+<option value="{{ num }}">
+    {{ num }} - {{ name }}
+</option>
+{% endfor %}
+</select>
 
 <button type="submit">Analyze</button>
 
